@@ -1,0 +1,72 @@
+# JAM Photo — configurazione Netlify
+# Sito statico: nessun comando di build, si pubblica la cartella public/.
+[build]
+  publish = "public"
+  command = ""
+
+# ---------- Redirect 301 dai vecchi indirizzi del sito Wix ----------
+[[redirects]]
+  from = "/headshots"
+  to = "/headshot/"
+  status = 301
+[[redirects]]
+  from = "/headshots-prezzi"
+  to = "/headshot/"
+  status = 301
+[[redirects]]
+  from = "/portrait"
+  to = "/ritratto/"
+  status = 301
+[[redirects]]
+  from = "/ritratto-prezzi"
+  to = "/ritratto/"
+  status = 301
+[[redirects]]
+  from = "/fashion"
+  to = "/portfolio/#fashion"
+  status = 301
+[[redirects]]
+  from = "/studiofotografico"
+  to = "/studio/"
+  status = 301
+[[redirects]]
+  from = "/contact"
+  to = "/#contatti"
+  status = 301
+[[redirects]]
+  from = "/privacy-policy"
+  to = "/privacy/"
+  status = 301
+[[redirects]]
+  from = "/cookie-policy"
+  to = "/cookie/"
+  status = 301
+
+# ---------- Intestazioni di sicurezza ----------
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = "default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; font-src 'self'; connect-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+
+# ---------- Cache ----------
+[[headers]]
+  for = "/assets/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+[[headers]]
+  for = "/assets/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+[[headers]]
+  for = "/assets/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+[[headers]]
+  for = "/assets/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
