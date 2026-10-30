@@ -11,7 +11,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, 'public', 'assets', 'img')
 A = '/mnt/user-data/attachments/15d784a8-d061-5c35-bf31-d89465830a1c'
 U = '/mnt/user-data/uploads'
-LIZARD_DIR = '/home/claude/jamphoto/_in/zip'   # zip "album-47138875-downloads.zip" estratto
+LIZARD_DIR = '/home/claude/jamphoto/_work/lizard-clean'   # foto dello zip Lizard senza logo (vedi _src/delogo.py)
 
 SHADOW = (0x14, 0x12, 0x10)
 LIGHT = (0xF3, 0xF0, 0xEB)
@@ -46,8 +46,6 @@ CATALOG = {
     'hs-tshirt':   (f'{A}/817b0d47-image.jpg', None, (640, 1280, 1920)),
     'hs-blazer':   (f'{A}/f9e3ad52-image.jpg', (0, 0, 2200, 1717), (640, 1280, 2200)),
     'studio-sala':     (f'{A}/ad14ad06-image.jpg', None, (640, 1280, 2000)),
-    'studio-limbo':    (f'{A}/6bbd2620-image.jpg', None, (640, 1280, 2000)),
-    'studio-limbo-2':  (f'{A}/6aad107b-image.jpg', None, (640, 1280, 2000)),
     'studio-scala':    (f'{A}/ed60974f-image.jpg', None, (640, 1280, 2000)),
     'studio-open':     (f'{A}/7faa55bb-image.jpg', None, (640, 1280, 2000)),
     'studio-pallet':   (f'{A}/7422219f-image.jpg', None, (640, 1280, 2000)),
@@ -96,7 +94,7 @@ def main():
     # Lizard: tutte le foto dello zip, nomi neutri, miniatura + grande
     ldir = os.path.join(OUT, 'lizard')
     os.makedirs(ldir, exist_ok=True)
-    files = sorted(glob.glob(os.path.join(LIZARD_DIR, '*.jpg')) + glob.glob(os.path.join(LIZARD_DIR, '*.JPG')))
+    files = sorted(glob.glob(os.path.join(LIZARD_DIR, 'lizard-*.png')))
     lz = []
     for n, f in enumerate(files, 1):
         key = f'lizard-{n:03d}'

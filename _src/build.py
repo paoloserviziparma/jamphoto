@@ -728,10 +728,8 @@ def studio_page(L):
 <h2 id="g-t" class="h-md split-title">{q("Lo studio", "The studio")}</h2>
 {gallery("studio", [
   ("studio-sala", q("Sala a doppia altezza con grandi finestre, divano in pelle, limbo bianco e scala verso il soppalco", "Double-height room with large windows, leather sofa, white cyclorama and stairs to the mezzanine")),
-  ("studio-limbo", q("Limbo bianco con ombrello da studio e pallet bianco su ruote", "White cyclorama with studio umbrella and white pallet on wheels")),
   ("studio-scala", q("Limbo bianco visto di lato con la scala a chiocciola e la parete dell\'attrezzatura", "White cyclorama seen from the side with the spiral staircase and the equipment wall")),
   ("studio-open", q("L\'open space con finestre alte, soppalco e ombrelli da studio", "The open space with tall windows, mezzanine and studio umbrellas")),
-  ("studio-limbo-2", q("Limbo bianco lucido, luci a tubo LED e griglie per softbox", "Glossy white cyclorama, LED tube lights and softbox grids")),
   ("studio-stender", q("Stender con grucce e cappelli davanti al limbo; sullo sfondo divano e carrello degli accessori", "Clothes rail with hangers and hats in front of the cyclorama; sofa and accessories trolley in the background")),
   ("studio-pallet", q("Pavimento lucido e pallet bianco su ruote in primo piano, ombrello da studio sulla destra", "Glossy floor and white pallet on wheels in the foreground, studio umbrella on the right")),
 ], L)}
