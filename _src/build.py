@@ -376,7 +376,6 @@ def home(L):
 <ul><li>{q("60 minuti in studio", "60 minutes in the studio")}</li><li>{q("2 foto postprodotte incluse", "2 retouched photos included")}</li><li>{q("Per LinkedIn, CV, sito e WhatsApp", "For LinkedIn, CV, website and WhatsApp")}</li><li>{q("Gallery riservata per scegliere", "Private gallery to choose from")}</li></ul>
 <a class="link-arrow" href="{R("headshot", L)}">{q("Scopri l'headshot", "Discover the headshot")} →</a></article>
 <article class="card card--dark" data-reveal="2"><p class="badge note">{q("Il più amato dalle donne", "Women's favourite")}</p><h3 class="h-sm">{q("Ritratto personale", "Personal portrait")}</h3>
-<p class="price">€ 350 <small>{q("IVA inclusa", "VAT included")}</small></p>
 <ul><li>{q("120 minuti in studio", "120 minutes in the studio")}</li><li>{q("2 foto postprodotte incluse", "2 retouched photos included")}</li><li>{q("Outfit a scelta", "Outfits of your choice")}</li><li>{q("Per personal brand, book o per te", "For personal branding, a book or just for you")}</li></ul>
 <a class="link-arrow" href="{R("ritratto", L)}">{q("Scopri il ritratto", "Discover the portrait")} →</a></article>
 <article class="card" data-reveal="3"><h3 class="h-sm">{q("Team aziendali", "Corporate teams")}</h3>
@@ -410,7 +409,7 @@ def home(L):
 
     quiz_data = {
         'headshot': {'title': q('Headshot LinkedIn', 'LinkedIn headshot'), 'text': q('60 minuti in studio, 2 foto postprodotte incluse e una gallery riservata per scegliere con calma.', '60 minutes in the studio, 2 retouched photos included and a private gallery to choose from at your own pace.'), 'href': R('headshot', L)},
-        'ritratto': {'title': q('Ritratto personale', 'Personal portrait'), 'text': q('Due ore tutte per te, outfit a scelta e 2 foto postprodotte incluse. € 350 IVA inclusa.', 'Two hours just for you, outfits of your choice and 2 retouched photos included. € 350 VAT included.'), 'href': R('ritratto', L)},
+        'ritratto': {'title': q('Ritratto personale', 'Personal portrait'), 'text': q('Due ore tutte per te, outfit a scelta e 2 foto postprodotte incluse.', 'Two hours just for you, outfits of your choice and 2 retouched photos included.'), 'href': R('ritratto', L)},
         'team': {'title': q('Headshot per il team', 'Team headshots'), 'text': q('Stessa luce e stesso sfondo per tutte le persone, in studio o nella vostra sede. Ti prepariamo un preventivo.', 'Same light and background for everyone, in the studio or at your offices. We\'ll prepare a quote.'), 'href': R('team', L)},
         '_prefill': q('Ciao Paolo, il selettore mi consiglia: {s}. Vorrei sapere le prossime date disponibili.', 'Hi Paolo, the selector suggests: {s}. I\'d like to know your next available dates.'),
     }
@@ -462,7 +461,7 @@ def home(L):
 <h2 id="ritratti-t" class="h-lg split-title">{q("Il tuo ritratto.<br>Finalmente.", "Your portrait.<br>At last.")}</h2>
 <p class="lead">{q("Non serve sentirsi modelle. Hai un viso che ha vissuto, uno stile tutto tuo e qualcosa da raccontare: il nostro lavoro è trovare la luce giusta e metterti a tuo agio.", "You don't need to feel like a model. You have a face that has lived, a style of your own and something to say: our job is to find the right light and put you at ease.")}</p>
 <p class="muted">{q("Due ore tutte per te, gli outfit che ami, un trucco naturale (anche con una truccatrice professionista, se vuoi) e un caffè, o un bicchiere di vino se i nervi lo chiedono. Niente ritocchi che ti trasformano in un'altra persona: solo tu, al tuo meglio.", "Two hours just for you, the outfits you love, natural make-up (with a professional make-up artist if you like) and a coffee, or a glass of wine if your nerves need it. No retouching that turns you into someone else: just you, at your best.")}</p>
-<div class="btn-row"><a class="btn btn--light" href="{R("ritratto", L)}">{q("Regalati un ritratto · € 350", "Treat yourself to a portrait · € 350")}</a></div>
+<div class="btn-row"><a class="btn btn--light" href="{R("ritratto", L)}">{q("Regalati un ritratto", "Treat yourself to a portrait")}</a></div>
 </div>
 <div class="duo">
 <div class="ph r-23 parallax" data-reveal>{img("chignon-v", q("Ritratto in bianco e nero di una donna con chignon e cardigan nero, una mano alla tempia, su fondo chiaro", "Black and white portrait of a woman with a bun and black cardigan, hand at her temple, on a light background"), "(max-width: 900px) 50vw, 25vw")}</div>
@@ -555,7 +554,7 @@ def home(L):
 
 {contact_section(L)}'''
     ld = [faq_ld(faq_items),
-          service_ld(q('Ritratto fotografico personale', 'Personal portrait session'), q('Sessione di 120 minuti in studio a Parma con outfit a scelta e 2 foto postprodotte incluse.', '120-minute studio session in Parma with outfits of your choice and 2 retouched photos included.'), L, 'ritratto', 350, True)]
+          service_ld(q('Ritratto fotografico personale', 'Personal portrait session'), q('Sessione di 120 minuti in studio a Parma con outfit a scelta e 2 foto postprodotte incluse.', '120-minute studio session in Parma with outfits of your choice and 2 retouched photos included.'), L, 'ritratto')]
     write(R('home', L), page(L, 'home', T['title'], T['desc'], body, ld))
 
 # ================================================================== pagine servizio
