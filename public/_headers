@@ -1,0 +1,4 @@
+# Cancella i dati rimasti dal vecchio sito Wix (service worker, archivi locali).
+# Il sito nuovo non usa archivi locali, quindi non perde nulla.
+/*
+  Clear-Site-Data: "storage"

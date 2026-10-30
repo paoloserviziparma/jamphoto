@@ -52,8 +52,6 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=(), interest-cohort=()"
     Strict-Transport-Security = "max-age=31536000; includeSubDomains"
-    # cancella i dati rimasti dal vecchio sito Wix (service worker, archivi locali); il sito nuovo non ne usa
-    Clear-Site-Data = "\"storage\""
 
 # ---------- Cache ----------
 [[headers]]
