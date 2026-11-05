@@ -293,7 +293,7 @@ table.compare{width:100%;border-collapse:collapse;font-size:16px}
   .js [data-reveal="3"]{transition-delay:.24s}
 
   /* Titoli parola per parola */
-  .js .split-title .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em;margin-bottom:-.06em}
+  .js .split-title .w{display:inline-block;overflow:hidden;vertical-align:top;padding:.16em 0 .06em;margin:-.16em 0 -.06em}
   .js .split-title .w > span{display:inline-block;transform:translateY(105%);transition:transform .9s var(--ease);transition-delay:calc(var(--i,0) * 70ms)}
   .js .split-title.is-in .w > span{transform:none}
 
@@ -314,3 +314,37 @@ table.compare{width:100%;border-collapse:collapse;font-size:16px}
   *,*::before,*::after{animation:none !important;transition:none !important;scroll-behavior:auto !important}
   .parallax > img{transform:none !important;height:100%}
 }
+
+/* Foto profilo business: anteprime generiche e referenze */
+.mocks{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:24px;align-items:start}
+.mock{margin:0;display:flex;flex-direction:column;gap:16px}
+.mock figcaption{display:flex;flex-direction:column;gap:6px;font-size:15px;color:var(--muted)}
+.mock figcaption strong{font-family:var(--display);font-weight:400;font-size:32px;line-height:1;color:var(--ink)}
+.mock-card{background:var(--paper);border:1px solid var(--line);padding:20px;min-height:236px;display:flex;flex-direction:column;justify-content:center}
+.mock-face{border-radius:50%;object-fit:cover;object-position:50% 40%;aspect-ratio:1/1;flex:0 0 auto}
+.mock-face--lg{width:112px;height:112px;margin:-56px 0 10px 4px;border:4px solid var(--white);position:relative}
+.mock-face--md{width:76px;height:76px}
+.mock-face--sm{width:48px;height:48px}
+.mock-profile{justify-content:flex-start;background:var(--white);padding:0 0 20px}
+.mock-profile .mock-banner{height:72px;background:linear-gradient(0deg,#D8D3CB,#D8D3CB)}
+.mock-profile > *:not(.mock-banner){margin-left:20px}
+.mock-name{font-weight:700;font-size:16px;line-height:1.3}
+.mock-line{font-size:13px;color:var(--muted);line-height:1.4}
+.mock-line{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mock-row--dim .mock-line--short{width:45%}
+.mock-row--dim .mock-line--w{width:70%}
+.mock-row--dim .mock-line{background:var(--line);border-radius:3px;height:10px;margin:6px 0}
+.mock-chat{gap:14px;background:var(--white)}
+.mock-row{display:flex;align-items:center;gap:12px;position:relative}
+.mock-row > div{flex:1;min-width:0}
+.mock-time{font-size:12px;color:var(--muted);align-self:flex-start}
+.mock-dot{width:48px;height:48px;border-radius:50%;background:var(--line);flex:0 0 48px}
+.mock-sign{flex-direction:row;align-items:center;gap:16px;background:var(--white)}
+.mock-sign > div{border-left:2px solid var(--ink);padding-left:14px}
+.refs{display:flex;flex-direction:column;gap:20px}
+.ref{margin:0;display:flex;flex-direction:column;gap:12px}
+.ref-frame{background:#FFFFFF;padding:clamp(12px,2.5vw,24px);border:1px solid var(--line)}
+.ref-frame img{width:100%;max-width:526px;height:auto;margin:0 auto}
+.ref figcaption{font-size:14px;color:var(--muted)}
+.section--dark .ref figcaption{color:var(--muted-on-dark)}
+.section--dark .ref figcaption strong{color:var(--paper)}

@@ -37,6 +37,7 @@ ROUTES = {
     'ritratto':  {'it': '/ritratto/', 'en': '/en/portrait/'},
     'team':      {'it': '/team-aziendali/', 'en': '/en/corporate-headshots/'},
     'studio':    {'it': '/studio/', 'en': '/en/studio-rental/'},
+    'business':  {'it': '/foto-profilo-business/', 'en': '/en/business-profile-photos/'},
     'portfolio': {'it': '/portfolio/', 'en': '/en/portfolio/'},
     'lizard':    {'it': '/lizard/', 'en': '/en/lizard/'},
     'privacy':   {'it': '/privacy/', 'en': '/en/privacy/'},
@@ -139,7 +140,7 @@ def footer(L):
 <div class="wrap">
 <a class="brand" href="{R("home", L)}" aria-label="{u["home_label"]}">{LOGO_SVG}</a>
 <p>{u["company"]}<br>{ADDRESS}</p>
-<nav aria-label="{u["footer_nav"]}"><a href="{INSTAGRAM}" rel="noopener">Instagram</a><a href="{FACEBOOK}" rel="noopener">Facebook</a><a href="{R("privacy", L)}">{u["privacy"]}</a><a href="{R("cookie", L)}">{u["cookie"]}</a></nav>
+<nav aria-label="{u["footer_nav"]}"><a href="{INSTAGRAM}" rel="noopener">Instagram</a><a href="{FACEBOOK}" rel="noopener">Facebook</a><a href="{R("business", L)}">{"Foto profilo business" if L == "it" else "Business profile photos"}</a><a href="{R("privacy", L)}">{u["privacy"]}</a><a href="{R("cookie", L)}">{u["cookie"]}</a></nav>
 </div>
 </footer>'''
 
@@ -218,6 +219,8 @@ FAQ = {
   'ritorno': ('E se torno per altri scatti?', ['Se sei soddisfatta o soddisfatto e torni più avanti per altri scatti, hai uno sconto del 50%.']),
   'gruppi': ('Fate sconti per gruppi o aziende?', [f'Certo. Il costo varia in base al numero di persone e alla location; per i gruppi aziendali applichiamo tariffe dedicate. Scrivici a <a href="mailto:{EMAIL}">{EMAIL}</a> o usa il modulo qui sotto.']),
   'stampa': ('Fate anche la stampa delle foto?', ['Non direttamente: la stampa non è compresa nel pacchetto, ma possiamo ordinarla per te presso i nostri fornitori.']),
+  'stessa': ('Posso usare la stessa foto su LinkedIn, WhatsApp e nella firma email?', ['Sì, ed è la scelta migliore: una foto coerente ti rende riconoscibile su ogni canale. Durante il briefing pensiamo l\'inquadratura perché funzioni anche ritagliata in un cerchio e vista in piccolo.']),
+  'firme_team': ('Fate le foto per le firme email di tutta l\'azienda?', ['Sì: con gli headshot aziendali tutte le persone hanno la stessa luce e lo stesso sfondo, così profili e firme email sono coerenti. Scattiamo in studio a Parma o nella vostra sede.']),
   'studio_incluso': ('Cosa è incluso nel noleggio dello studio?', ['Fondali da 3 m di larghezza in vari colori, sgabelli e scatole in legno, flash con trigger, diffusori e ombrelli, proiettore, impianto stereo, consumo elettrico (4,5 kW disponibili), camerino e bagno con doccia, accesso alla zona caffè.']),
   'studio_accesso': ('Come si arriva allo studio?', ['L\'ingresso è diretto da Strada Martinella 76/1, 43124 Parma; lo studio si raggiunge tramite scale. Il parcheggio è libero.']),
   'studio_extra': ('Potete fornire trucco, parrucchiere o catering?', ['Sì, su richiesta: truccatrice, parrucchiere e catering, anche per la colazione. Indicalo nella richiesta così organizziamo tutto per tempo.']),
@@ -234,6 +237,8 @@ FAQ = {
   'ritorno': ('What if I come back for more photos?', ['If you\'re happy and come back later for another shoot, you get a 50% discount.']),
   'gruppi': ('Do you offer discounts for groups or companies?', [f'Of course. The price depends on the number of people and the location; corporate groups get dedicated rates. Write to <a href="mailto:{EMAIL}">{EMAIL}</a> or use the form below.']),
   'stampa': ('Do you also print the photos?', ['Not directly: printing isn\'t included in the package, but we\'re happy to order prints for you from our suppliers.']),
+  'stessa': ('Can I use the same photo on LinkedIn, WhatsApp and in my email signature?', ['Yes, and it\'s the best choice: one consistent photo makes you recognisable on every channel. During the briefing we plan the framing so it also works cropped into a circle and seen at a small size.']),
+  'firme_team': ('Do you shoot photos for the whole company\'s email signatures?', ['Yes: with corporate headshots everyone gets the same light and background, so profiles and email signatures look consistent. We shoot in our Parma studio or at your offices.']),
   'studio_incluso': ('What\'s included in the studio rental?', ['3 m wide backdrops in several colours, stools and wooden boxes, flash units with trigger, diffusers and umbrellas, projector, sound system, electricity (4.5 kW available), dressing room and bathroom with shower, access to the coffee area.']),
   'studio_accesso': ('How do I get to the studio?', ['Direct entrance from Strada Martinella 76/1, 43124 Parma; the studio is reached by stairs. Parking is free.']),
   'studio_extra': ('Can you provide make-up, hair or catering?', ['Yes, on request: make-up artist, hairdresser and catering, including breakfast. Mention it in your request so we can organise everything in time.']),
@@ -487,6 +492,16 @@ def home(L):
 </div>
 </div></section>
 
+<section class="section section--white" aria-labelledby="biz-t" id="foto-profilo"><div class="wrap split">
+<div class="stack">
+<p class="eyebrow">{q("Foto profilo business", "Business profile photos")}</p>
+<h2 id="biz-t" class="h-lg split-title">{q("LinkedIn, WhatsApp,<br>firma email.", "LinkedIn, WhatsApp,<br>email signature.")}</h2>
+<p class="lead">{q("Una sola foto professionale, riconoscibile ovunque ti scrivano o ti cerchino: sul profilo, nelle chat, in fondo a ogni email.", "One professional photo, recognisable wherever people write to you or look you up: on your profile, in chats, at the bottom of every email.")}</p>
+<div class="btn-row"><a class="btn" href="{R("business", L)}">{q("Scopri le foto profilo business", "Discover business profile photos")}</a></div>
+</div>
+{references(L)}
+</div></section>
+
 {quiz}
 
 <section class="section" aria-labelledby="guida-t"><div class="wrap stack-lg">
@@ -589,7 +604,8 @@ def headshot_page(L):
 <a class="btn" href="#prenota">{q("Prenota l\'headshot", "Book your headshot")}</a></div>
 </div></section>
 <section class="section" aria-labelledby="g-t"><div class="wrap stack-lg">
-<h2 id="g-t" class="h-md split-title">{q("Alcuni headshot", "Some headshots")}</h2>
+<div class="head-row"><h2 id="g-t" class="h-md split-title">{q("Alcuni headshot", "Some headshots")}</h2>
+<a class="link-arrow" href="{R("business", L)}">{q("Come appare su LinkedIn, WhatsApp e firma email", "How it looks on LinkedIn, WhatsApp and email signatures")} →</a></div>
 {gallery("headshot", [
   ("hs-occhiali", q("Headshot a colori di un uomo con occhiali, giacca blu e camicia a righe su fondo grigio", "Colour headshot of a man with glasses, blue jacket and striped shirt on a grey background")),
   ("hs-verde", q("Headshot a colori di una donna bionda con blusa verde petrolio su fondo scuro", "Colour headshot of a blonde woman in a teal blouse on a dark background")),
@@ -820,6 +836,96 @@ def lizard_page(L):
              f'Lizard: {len(lz)} high-contrast black and white portraits on a black background, shot by JAM Photo in Parma, Italy.')
     write(R('lizard', L), page(L, 'lizard', q('Lizard – ritratti in bianco e nero | JAM Photo', 'Lizard – black and white portraits | JAM Photo'), desc, body, [crumbs_ld(L, trail)], has_lightbox=True))
 
+
+# ================================================================== foto profilo business
+def mockups(L, key='avatar'):
+    it = L == 'it'
+    q = lambda a, b: a if it else b
+    alt = q('Esempio di foto profilo: donna sorridente con blazer nero', 'Sample profile photo: smiling woman in a black blazer')
+    name = q('Nome Cognome', 'Your Name')
+    role = q('Ruolo · Azienda', 'Role · Company')
+    face = lambda cls: img(key, alt, '160px', cls=cls)
+    return f"""<div class="mocks">
+<figure class="mock" data-reveal>
+<div class="mock-card mock-profile" aria-hidden="true"><div class="mock-banner"></div>{face("mock-face mock-face--lg")}<p class="mock-name">{name}</p><p class="mock-line">{role}</p><p class="mock-line">Parma, {q("Italia", "Italy")}</p></div>
+<figcaption><strong>LinkedIn</strong>{q("La foto si vede dentro un cerchio, accanto al tuo nome: contano l\'inquadratura su viso e spalle e uno sfondo pulito.", "Your photo is shown in a circle next to your name: framing on face and shoulders and a clean background are what count.")}</figcaption>
+</figure>
+<figure class="mock" data-reveal="2">
+<div class="mock-card mock-chat" aria-hidden="true">
+<div class="mock-row">{face("mock-face mock-face--sm")}<div><p class="mock-name">{name}</p><p class="mock-line">{q("Ci vediamo domani alle 10?", "See you tomorrow at 10?")}</p></div><span class="mock-time">09:41</span></div>
+<div class="mock-row mock-row--dim"><span class="mock-dot"></span><div><p class="mock-line mock-line--w">&nbsp;</p><p class="mock-line mock-line--short">&nbsp;</p></div></div>
+<div class="mock-row mock-row--dim"><span class="mock-dot"></span><div><p class="mock-line mock-line--w">&nbsp;</p><p class="mock-line mock-line--short">&nbsp;</p></div></div>
+</div>
+<figcaption><strong>WhatsApp</strong>{q("Nell\'elenco delle chat la foto è piccolissima: servono contrasto, luce sul viso e uno sguardo in camera.", "In the chat list the photo is tiny: it needs contrast, light on the face and eye contact.")}</figcaption>
+</figure>
+<figure class="mock" data-reveal="3">
+<div class="mock-card mock-sign" aria-hidden="true">{face("mock-face mock-face--md")}<div><p class="mock-name">{name}</p><p class="mock-line">{role}</p><p class="mock-line">+39 000 000000</p><p class="mock-line">nome@azienda.it</p></div></div>
+<figcaption><strong>{q("Firma email", "Email signature")}</strong>{q("Accanto a nome e ruolo, in ogni messaggio che mandi: dà un volto a chi scrive e rende la firma più professionale.", "Next to your name and role, in every message you send: it puts a face to the sender and makes the signature look more professional.")}</figcaption>
+</figure>
+</div>"""
+
+def references(L):
+    it = L == 'it'
+    q = lambda a, b: a if it else b
+    refs = [
+        ('ref-si-net', q('Firma email di un cliente, CEO di Si-Net Srl, con la sua foto profilo scattata da JAM Photo', 'Email signature of a client, CEO of Si-Net Srl, with his profile photo shot by JAM Photo'), 'CEO · Si-Net Srl', 526),
+        ('ref-sistemi', q('Firma email di una cliente di Sistemi Parma con la sua foto profilo scattata da JAM Photo', 'Email signature of a client at Sistemi Parma with her profile photo shot by JAM Photo'), 'Sistemi · Parma', 402),
+    ]
+    items = ''.join(
+        f'<figure class="ref" data-reveal><div class="ref-frame">{img(k, alt, f"(max-width: 600px) 100vw, {w}px")}</div>'
+        f'<figcaption>{cap} · {q("foto profilo nella firma email", "profile photo in the email signature")}</figcaption></figure>'
+        for k, alt, cap, w in refs)
+    return f'<div class="refs">{items}</div>'
+
+def business_page(L):
+    it = L == 'it'
+    q = lambda a, b: a if it else b
+    name = q('Foto profilo business', 'Business profile photos')
+    trail = [(name, 'business')]
+    body = service_hero(L, trail,
+        q('Foto profilo business a Parma · LinkedIn, WhatsApp, firma email', 'Business profile photos in Parma, Italy · LinkedIn, WhatsApp, email signature'),
+        q('Una foto.<br>Ovunque lavori.', 'One photo.<br>Wherever you work.'),
+        q('La foto che usi su LinkedIn, su WhatsApp e nella firma delle email è la prima stretta di mano con clienti e colleghi. Un ritratto professionale la rende riconoscibile e credibile, uguale su ogni canale.', 'The photo you use on LinkedIn, on WhatsApp and in your email signature is your first handshake with clients and colleagues. A professional portrait makes it recognisable and credible, the same on every channel.'),
+        'hs-blazer', q('Headshot a colori di una donna sorridente con blazer nero e foulard a righe', 'Colour headshot of a smiling woman in a black blazer and striped scarf'),
+        f'<div class="btn-row" data-seq><a class="btn" href="#prenota">{q("Prenota la tua foto profilo", "Book your profile photo")}</a><a class="btn btn--ghost" href="#referenze">{q("Guarda le referenze", "See references")}</a></div>')
+    body += f"""<section class="section section--white" aria-labelledby="tre-t"><div class="wrap stack-lg">
+<div class="head-row"><h2 id="tre-t" class="h-md split-title">{q("Tre posti, una sola immagine", "Three places, one image")}</h2>
+<p class="muted">{q("La stessa foto, vista dove la vedranno i tuoi contatti.", "The same photo, seen where your contacts will see it.")}</p></div>
+{mockups(L)}
+</div></section>
+<section class="section section--dark on-dark" id="referenze" aria-labelledby="ref-t"><div class="wrap split">
+<div class="stack"><p class="eyebrow">{q("Referenze", "References")}</p>
+<h2 id="ref-t" class="h-lg split-title">{q("Già al lavoro,<br>ogni giorno.", "Already at work,<br>every day.")}</h2>
+<p class="lead">{q("Le foto profilo dei nostri clienti, nei posti dove lavorano davvero: firme email, profili, biglietti da visita digitali.", "Our clients\' profile photos where they really work: email signatures, profiles, digital business cards.")}</p></div>
+{references(L)}
+</div></section>
+<section class="section" aria-labelledby="tips-t"><div class="wrap stack-lg">
+<h2 id="tips-t" class="h-md split-title">{q("Cosa rende efficace una foto in piccolo", "What makes a photo work at a small size")}</h2>
+<ol class="steps">
+<li data-reveal><span class="n">01</span><strong>{q("Inquadratura stretta", "Tight framing")}</strong><span>{q("Viso e spalle riempiono il cerchio: niente spazio vuoto, niente sfondo che distrae.", "Face and shoulders fill the circle: no empty space, no distracting background.")}</span></li>
+<li data-reveal="2"><span class="n">02</span><strong>{q("Luce sul viso", "Light on the face")}</strong><span>{q("Flash e riflettori controllati: la foto resta leggibile anche a pochi centimetri sullo schermo del telefono.", "Controlled flash and reflectors: the photo stays readable even a few centimetres wide on a phone screen.")}</span></li>
+<li data-reveal="3"><span class="n">03</span><strong>{q("Sguardo in camera", "Eye contact")}</strong><span>{q("Il contatto diretto con chi guarda è ciò che si nota per primo, anche in un\'icona.", "Direct eye contact is the first thing people notice, even in an icon.")}</span></li>
+<li data-reveal="3"><span class="n">04</span><strong>{q("La stessa foto ovunque", "The same photo everywhere")}</strong><span>{q("Da LinkedIn alla firma email, i tuoi contatti ti riconoscono subito.", "From LinkedIn to your email signature, people recognise you at once.")}</span></li>
+</ol>
+</div></section>
+<section class="section section--white" aria-labelledby="pk-t"><div class="wrap stack-lg">
+<h2 id="pk-t" class="h-md split-title">{q("Per te o per tutto il team", "For you or for the whole team")}</h2>
+<div class="cards">
+<article class="card" data-reveal><h3 class="h-sm">{q("Headshot LinkedIn", "LinkedIn headshot")}</h3><p class="price">€ 199 <small>{q("IVA inclusa", "VAT included")}</small></p>
+<ul><li>{q("60 minuti in studio", "60 minutes in the studio")}</li><li>{q("2 foto postprodotte incluse", "2 retouched photos included")}</li><li>{q("Gallery riservata per scegliere", "Private gallery to choose from")}</li></ul>
+<a class="link-arrow" href="{R("headshot", L)}">{q("Scopri l\'headshot", "Discover the headshot")} →</a></article>
+<article class="card card--dark" data-reveal="2"><h3 class="h-sm">{q("Team aziendali", "Corporate teams")}</h3><p class="price">{q("Su preventivo", "On quote")}</p>
+<ul><li>{q("Stessa luce e stesso sfondo per tutti", "Same light and background for everyone")}</li><li>{q("Firme email e profili coerenti", "Consistent email signatures and profiles")}</li><li>{q("In studio o nella vostra sede", "In the studio or at your offices")}</li></ul>
+<a class="link-arrow" href="{R("team", L)}">{q("Chiedi un preventivo", "Get a quote")} →</a></article>
+</div>
+</div></section>"""
+    faq_html, items = faq_block(L, ['stessa', 'firme_team', 'vestiti', 'consegna_prezzo', 'pagamento'])
+    body += faq_html + contact_section(L, 'headshot', 'prenota')
+    desc = q('Foto profilo professionali per LinkedIn, WhatsApp e firma email a Parma: un headshot riconoscibile e coerente su ogni canale, per te o per tutto il team.',
+             'Professional profile photos for LinkedIn, WhatsApp and email signatures in Parma, Italy: a recognisable headshot that looks consistent on every channel, for you or your whole team.')
+    ld = [crumbs_ld(L, trail), faq_ld(items), service_ld(name, desc, L, 'business', 199, True)]
+    write(R('business', L), page(L, 'business', q('Foto profilo LinkedIn, WhatsApp e firma email a Parma | JAM Photo', 'LinkedIn, WhatsApp and email signature photos in Parma | JAM Photo'), desc, body, ld))
+
 # ================================================================== testi legali
 def legal(L, key, title, html_body, desc):
     trail = [(title, key)]
@@ -870,8 +976,8 @@ def not_found():
 
 # ================================================================== sitemap, robots, llms
 def sitemap():
-    pages = ['home', 'headshot', 'ritratto', 'team', 'studio', 'portfolio', 'lizard', 'privacy', 'cookie']
-    prio = {'home': '1.0', 'headshot': '0.9', 'ritratto': '0.9', 'team': '0.8', 'studio': '0.8', 'portfolio': '0.7', 'lizard': '0.6', 'privacy': '0.2', 'cookie': '0.2'}
+    pages = ['home', 'headshot', 'business', 'ritratto', 'team', 'studio', 'portfolio', 'lizard', 'privacy', 'cookie']
+    prio = {'home': '1.0', 'headshot': '0.9', 'business': '0.9', 'ritratto': '0.9', 'team': '0.8', 'studio': '0.8', 'portfolio': '0.7', 'lizard': '0.6', 'privacy': '0.2', 'cookie': '0.2'}
     out = ['<?xml version="1.0" encoding="UTF-8"?>',
            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">']
     for p in pages:
@@ -900,6 +1006,7 @@ def llms():
 ## Servizi e prezzi
 
 - [Headshot LinkedIn]({SITE}/headshot/): € 199 IVA inclusa. 60 minuti in studio, 2 foto postprodotte, gallery riservata.
+- [Foto profilo business]({SITE}/foto-profilo-business/): foto profilo professionali per LinkedIn, WhatsApp e firma email (sessione Headshot LinkedIn o headshot per team).
 - [Ritratto personale]({SITE}/ritratto/): € 350 IVA inclusa. 120 minuti in studio, outfit a scelta, 2 foto postprodotte, truccatrice su richiesta.
 - [Headshot aziendali per team]({SITE}/team-aziendali/): su preventivo, in base al numero di persone e alla location. In studio o in sede (serve una stanza con almeno 4 × 4 m liberi).
 - [Noleggio studio]({SITE}/studio/): € 350 + IVA giornata (8 ore), € 250 + IVA mezza giornata (4 ore). 130 m², altezza 5,25 m, limbo bianco lucido 3,5 × 3,5 m, fondali 3 m, flash con trigger, camerino e bagno con doccia, 4,5 kW.
@@ -920,6 +1027,6 @@ Briefing iniziale; scatti con flash e riflettori collegati al computer; 50–100
 
 if __name__ == '__main__':
     for L in ('it', 'en'):
-        home(L); headshot_page(L); ritratto_page(L); team_page(L); studio_page(L); portfolio_page(L); lizard_page(L)
+        home(L); headshot_page(L); business_page(L); ritratto_page(L); team_page(L); studio_page(L); portfolio_page(L); lizard_page(L)
     legal_pages(); thanks(); not_found(); sitemap(); llms()
     print('ok', CSS_V, JS_V)

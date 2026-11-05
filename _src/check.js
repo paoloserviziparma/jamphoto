@@ -9,7 +9,7 @@ const BASE = `http://127.0.0.1:${PORT}`;
 const OUT = process.env.SHOTS || '/tmp/shots';
 fs.mkdirSync(OUT, { recursive: true });
 
-const PAGES = ['/', '/headshot/', '/ritratto/', '/team-aziendali/', '/studio/', '/portfolio/', '/lizard/', '/privacy/', '/cookie/', '/grazie/', '/404.html',
+const PAGES = ['/', '/headshot/', '/foto-profilo-business/', '/en/business-profile-photos/', '/ritratto/', '/team-aziendali/', '/studio/', '/portfolio/', '/lizard/', '/privacy/', '/cookie/', '/grazie/', '/404.html',
   '/en/', '/en/headshot/', '/en/portrait/', '/en/corporate-headshots/', '/en/studio-rental/', '/en/portfolio/', '/en/lizard/', '/en/privacy/', '/en/cookies/', '/en/thank-you/'];
 const SIZES = [[1440, 900], [1366, 768], [1280, 720], [1024, 768], [768, 1024], [390, 844]];
 
@@ -52,7 +52,7 @@ const SIZES = [[1440, 900], [1366, 768], [1280, 720], [1024, 768], [768, 1024], 
       if (r.anchors.length) problems.push(`[${w}] ${p} ancore mancanti: ${r.anchors.join(', ')}`);
       if (r.imgsNoAlt) problems.push(`[${w}] ${p} immagini senza alt: ${r.imgsNoAlt}`);
       r.links.forEach(l => seenLinks.add(JSON.stringify([p, l])));
-      if (['/', '/en/', '/studio/', '/ritratto/', '/lizard/'].includes(p)) {
+      if (['/', '/en/', '/studio/', '/ritratto/', '/lizard/', '/foto-profilo-business/'].includes(p)) {
         await page.screenshot({ path: path.join(OUT, `${p.replace(/\//g, '_') || 'home'}-${w}.png`), fullPage: w <= 390 || w === 1440 });
       }
       await page.close();

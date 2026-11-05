@@ -19,6 +19,10 @@ MIX = 0.30
 
 # chiave: (file sorgente, ritaglio (x0,y0,x1,y1) o None, larghezze)
 CATALOG = {
+    # referenze dei clienti (screenshot reali): colori originali, nessun viraggio
+    # nomi delle persone coperti (versioni -anon): gli originali restano in _src/refs e non vanno online
+    'ref-si-net': (os.path.join(ROOT, '_src', 'refs', 'firma-si-net-anon.png'), None, (526,), 'raw'),
+    'ref-sistemi': (os.path.join(ROOT, '_src', 'refs', 'firma-sistemi-anon.png'), None, (402,), 'raw'),
     'hero':        (f'{A}/0e4f8b25-image.jpg', (760, 0, 1784, 1280), (640, 1024)),
     'og':          (f'{A}/0e4f8b25-image.jpg', (0, 136, 1920, 1144), (1200,)),
     'pizzo':       (f'{A}/0e4f8b25-image.jpg', None, (640, 1280, 1920)),
@@ -44,6 +48,7 @@ CATALOG = {
     'hs-verde':    (f'{A}/170e8d6d-image.jpg', None, (640, 1280, 1920)),
     'hs-occhiali': (f'{A}/37a114eb-image.jpg', None, (640, 1280, 1920)),
     'hs-tshirt':   (f'{A}/817b0d47-image.jpg', None, (640, 1280, 1920)),
+    'avatar':      (f'{A}/f9e3ad52-image.jpg', (240, 0, 1957, 1717), (160, 320)),
     'hs-blazer':   (f'{A}/f9e3ad52-image.jpg', (0, 0, 2200, 1717), (640, 1280, 2200)),
     'studio-sala':     (f'{A}/ad14ad06-image.jpg', None, (640, 1280, 2000)),
     'studio-scala':    (f'{A}/ed60974f-image.jpg', None, (640, 1280, 2000)),
@@ -61,11 +66,12 @@ def duotone(im):
     return Image.blend(im.convert('RGB'), tone, MIX)
 
 
-def export(key, src, box, widths, out_dir=OUT, quality=78):
+def export(key, src, box, widths, out_dir=OUT, quality=78, duo=True):
     im = ImageOps.exif_transpose(Image.open(src)).convert('RGB')
     if box:
         im = im.crop(box)
-    im = duotone(im)
+    if duo:
+        im = duotone(im)
     meta = {'w': im.width, 'h': im.height, 'sizes': []}
     for w in widths:
         w = min(w, im.width)
@@ -83,13 +89,15 @@ def main():
     if only:
         manifest = json.load(open(mpath))
         for key in only:
-            src, box, widths = CATALOG[key]
-            manifest[key] = export(key, src, box, widths); print(key, manifest[key])
+            src, box, widths, *opt = CATALOG[key]
+            raw = opt and opt[0] == 'raw'
+            manifest[key] = export(key, src, box, widths, quality=92 if raw else 78, duo=not raw); print(key, manifest[key])
         json.dump(manifest, open(mpath, 'w'), indent=1)
         return
     manifest = {}
-    for key, (src, box, widths) in CATALOG.items():
-        manifest[key] = export(key, src, box, widths)
+    for key, (src, box, widths, *opt) in CATALOG.items():
+        raw = opt and opt[0] == 'raw'
+        manifest[key] = export(key, src, box, widths, quality=92 if raw else 78, duo=not raw)
         print(key, manifest[key])
     # Lizard: tutte le foto dello zip, nomi neutri, miniatura + grande
     ldir = os.path.join(OUT, 'lizard')
